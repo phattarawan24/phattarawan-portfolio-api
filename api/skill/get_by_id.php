@@ -6,7 +6,7 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Methods: GET');
 
-$part = str_replace("\api\skill", "", __DIR__);
+$part = str_replace("/api/skill", "", __DIR__);
 require_once($part . "/controllers/skill/SkillController.php");
 
 $skillController = new SkillController();

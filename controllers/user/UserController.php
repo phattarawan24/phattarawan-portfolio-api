@@ -2,7 +2,7 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-$part_include = str_replace("\controllers\user", "", __DIR__);
+$part_include = str_replace("/controllers/user", "", __DIR__);
 require_once($part_include . "/controllers/Controller.php");
 require_once($part_include . "/vendor/autoload.php");
 
@@ -22,7 +22,7 @@ class UserController extends Controller
         $this->db = $this->connention();
         $this->key = $this->jwtKey();
 
-        $part = str_replace("\controllers\user", "", __DIR__);
+        $part = str_replace("/controllers/user", "", __DIR__);
         require_once($part . "/model/UserModel.php");
     }
 

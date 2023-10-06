@@ -2,7 +2,7 @@
 // print_r(__DIR__);
 // exit();
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-$part_include = str_replace("\controllers\auth", "", __DIR__);
+$part_include = str_replace("/controllers/auth", "", __DIR__);
 require_once($part_include . "/controllers/Controller.php");
 require_once($part_include . "/vendor/autoload.php");
 
@@ -21,7 +21,7 @@ class AuthContoller extends Controller
         $this->db = $this->connention();
         $this->key = $this->jwtKey();
 
-        $part = str_replace("\controllers\auth", "", __DIR__);
+        $part = str_replace("/controllers/auth", "", __DIR__);
         require_once($part . "/model/UserModel.php");
     }
 

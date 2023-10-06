@@ -6,7 +6,7 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Methods: POST');
 
-$part = str_replace("\api\auth", "", __DIR__);
+$part = str_replace("/api/auth", "", __DIR__);
 // print_r(__DIR__);
 // print_r($part);
 // exit();
