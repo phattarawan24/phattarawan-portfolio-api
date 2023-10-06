@@ -2,7 +2,7 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-$part_include = str_replace("/controllers//skill", "", __DIR__);
+$part_include = str_replace("/controllers/skill", "", __DIR__);
 require_once($part_include . "/controllers/Controller.php");
 require_once($part_include . "/vendor/autoload.php");
 

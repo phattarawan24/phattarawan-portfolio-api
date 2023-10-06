@@ -3,7 +3,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * @OA\Info(title="My First API", version="1.0")
+ * @OA\Info(title="My Portfolio", version="1.0")
  *  @OA\SecurityScheme(
  *      type="http",
  *      description="Enter token",
