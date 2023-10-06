@@ -1,6 +1,6 @@
 <?php
 // Allow from any origin
-if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['ORIGIN'] == "https://phattarawan-portfolio.popzone.link") {
+if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] == "https://phattarawan-portfolio.popzone.link") {
     // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
     // you want to allow, and if so:
     header("Access-Control-Allow-Origin: https://phattarawan-portfolio.popzone.link");
