@@ -5,7 +5,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class UserModel
 {
     private $conn;
-    private $table = "users";
+    private $table = "users_api";
 
     public function __construct($db)
     {
