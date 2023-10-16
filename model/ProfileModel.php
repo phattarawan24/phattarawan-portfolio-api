@@ -15,7 +15,7 @@ class ProfileModel
     public function getAll()
     {
         try {
-            $query = "SELECT id, first_name, last_name, phone, email FROM " . $this->table . " ORDER BY id DESC";
+            $query = "SELECT * FROM " . $this->table . " ORDER BY id DESC";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt;
