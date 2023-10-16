@@ -102,12 +102,15 @@ class ProfileController extends Controller
      * @OA\RequestBody(
      *  @OA\MediaType(
      *      mediaType="multipart/form-data",
-     *      @OA\Schema(required={"first_name", "last_name", "phone", "email", "birthday"},
+     *      @OA\Schema(required={"first_name", "last_name", "phone", "email", "birthday", "file", "degree", "experience"},
      *          @OA\Property(property="first_name", type="string"),
      *          @OA\Property(property="last_name", type="string"),
      *          @OA\Property(property="phone", type="string"),
      *          @OA\Property(property="email", type="string"),
-     *          @OA\Property(property="birthday", type="string")
+     *          @OA\Property(property="birthday", type="string"),
+     *          @OA\Property(property="file", type="file"),
+     *          @OA\Property(property="degree", type="string"),
+     *          @OA\Property(property="experience", type="string")
      *      )
      *  )
      * ),
@@ -133,6 +136,9 @@ class ProfileController extends Controller
                 $profileModel->phone = $this->phone;
                 $profileModel->email = $this->email;
                 $profileModel->birthday = $this->birthday;
+                $profileModel->img = $this->img;
+                $profileModel->degree = $this->degree;
+                $profileModel->experience = $this->experience;
                 $result = $profileModel->insert();
                 if ($result) {
                      $this->result = $result;
@@ -162,11 +168,14 @@ class ProfileController extends Controller
      *  @OA\RequestBody(
      *   @OA\MediaType(
      *      mediaType="multipart/form-data",
-     *      @OA\Schema(required={"first_name", "last_name", "phone", "email"},
+     *      @OA\Schema(required={"first_name", "last_name", "phone", "email", "degree", "experience", "file"},
      *          @OA\Property(property="first_name", type="string"),
      *          @OA\Property(property="last_name", type="string"),
      *          @OA\Property(property="phone", type="string"),
-     *          @OA\Property(property="email", type="string")
+     *          @OA\Property(property="email", type="string"),
+     *          @OA\Property(property="degree", type="degree"),
+     *          @OA\Property(property="experience", type="experience"),
+     *          @OA\Property(property="file", type="file")
      *      )
      *  )
      * ),
@@ -190,6 +199,9 @@ class ProfileController extends Controller
                 $profileModel->last_name = $this->last_name;
                 $profileModel->phone = $this->phone;
                 $profileModel->email = $this->email;
+                $profileModel->degree = $this->degree;
+                $profileModel->experience = $this->experience;
+                $profileModel->img = $this->img;
                 $profileModel->id = $this->id;
                 $result = $profileModel->update();
                 if ($result) {

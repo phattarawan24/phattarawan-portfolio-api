@@ -27,7 +27,7 @@ class ProfileModel
     public function getById()
     {
         try {
-            $query = "SELECT first_name, last_name FROM " . $this->table . " WHERE id= :id ORDER BY id DESC";
+            $query = "SELECT * FROM " . $this->table . " WHERE id= :id ORDER BY id DESC";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":id", $this->id);
             $stmt->execute();
@@ -48,6 +48,8 @@ class ProfileModel
             $stmt->bindParam(":email", $this->email);
             $stmt->bindParam(":birthday", $this->birthday);
             $stmt->bindParam(":img", $this->img);
+            $stmt->bindParam(":degree", $this->degree);
+            $stmt->bindParam(":experience", $this->experience);
             if ($stmt->execute()) {
                 $stmt_last_id = $this->conn->query("SELECT LAST_INSERT_ID()");
                 $lastId = $stmt_last_id->fetchColumn();
@@ -73,6 +75,9 @@ class ProfileModel
             $stmt->bindParam(":last_name", $this->last_name);
             $stmt->bindParam(":phone", $this->phone);
             $stmt->bindParam(":email", $this->email);
+            $stmt->bindParam(":degree", $this->degree);
+            $stmt->bindParam(":experience", $this->experience);
+            $stmt->bindParam(":img", $this->img);
             $stmt->bindParam(":id", $this->id);
             if ($stmt->execute()) {
                 if ($stmt->rowCount()) {
