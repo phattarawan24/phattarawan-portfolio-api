@@ -183,6 +183,7 @@ class SkillController extends Controller
                 $skillModel = new SkillModel($this->db);
                 $skillModel->title = $this->title;
                 $skillModel->level = $this->level;
+                $skillModel->type = $this->type;
                 $skillModel->id = $this->id;
                 $result = $skillModel->update();
                 if ($result) {
