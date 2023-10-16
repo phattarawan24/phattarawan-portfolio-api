@@ -14,7 +14,7 @@ $skillController = new SkillController();
 $params = array();
 $params["title"] = isset($_POST["title"]) && !empty($_POST["title"]) ? $_POST["title"] : "";
 $params["level"] = isset($_POST["level"]) && !empty($_POST["level"]) ? $_POST["level"] : "";
-$params["type"] = isset($_POST["type"]) && !empty($_POST["type"]) ? $_POST["type"] : "";
+$params["type"] = isset($_POST["type"]) ? $_POST["type"] : "";
 
 $data = json_encode($params);
 $data = json_decode($data);
