@@ -51,7 +51,7 @@ class SkillModel
             $updated = date('Y-m-d H:i:s');
             $stmt->bindParam(":created", $created);
             $stmt->bindParam(":updated", $updated);
-            $stmt->binParam(":type", $type);
+            $stmt->binParam(":type", $this->type);
             if ($stmt->execute()) {
                 $stmt_last_id = $this->conn->query("SELECT LAST_INSERT_ID()");
                 $lastId = $stmt_last_id->fetchColumn();
