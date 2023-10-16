@@ -15,12 +15,14 @@ $params = array();
 $params["id"] = isset($id) && !empty($id) ? $id : "";
 $params["title"] = isset($_POST["title"]) && !empty($_POST["title"]) ? $_POST["title"] : "";
 $params["level"] = isset($_POST["level"]) && !empty($_POST["level"]) ? $_POST["level"] : "";
+$params["type"] = isset($_POST["type"]) && !empty($_POST["type"]) ? $_POST["type"] : "";
 
 $data = json_encode($params);
 $data = json_decode($data);
 
 $skillController->title = $data->title;
 $skillController->level = $data->level;
+$skillController->type = $data->type;
 $skillController->id = $data->id;
 
 if ($data->id == "") {
@@ -53,7 +55,17 @@ if ($data->id == "") {
             "message" => "You didn't enter your level. Please try again."
         )
     );
-}  else {
+} elseif ($data->type == "") {
+    http_response_code(401);
+    echo json_encode(
+        array(
+            "code" => 401,
+            "status" => "error",
+            "title" => "Oops...",
+            "message" => "You didn't enter your type. please try again."
+        )
+    );
+} else {
     if ($skillController->updateSkill()) {
         http_response_code(200);
         echo json_encode(

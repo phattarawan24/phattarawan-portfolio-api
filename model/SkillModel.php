@@ -15,7 +15,7 @@ class SkillModel
     public function getAll()
     {
         try {
-            $query = "SELECT id, title, level, created,type FROM " . $this->table . " ORDER BY id DESC";
+            $query = "SELECT * FROM " . $this->table . " ORDER BY id DESC";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt;
@@ -43,7 +43,7 @@ class SkillModel
     public function insert()
     {
         try {
-            $query = "INSERT INTO " . $this->table . "(title, level, created, updated) VALUES (:title, :level, :created, :updated)";
+            $query = "INSERT INTO " . $this->table . "(title, level, created, updated, type) VALUES (:title, :level, :created, :updated, :type)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":title", $this->title);
             $stmt->bindParam(":level", $this->level);
@@ -51,6 +51,7 @@ class SkillModel
             $updated = date('Y-m-d H:i:s');
             $stmt->bindParam(":created", $created);
             $stmt->bindParam(":updated", $updated);
+            $stmt->bindParam(":type", $this->type);
             if ($stmt->execute()) {
                 $stmt_last_id = $this->conn->query("SELECT LAST_INSERT_ID()");
                 $lastId = $stmt_last_id->fetchColumn();
@@ -72,12 +73,13 @@ class SkillModel
     public function update()
     {
         try {
-            $query = "UPDATE " . $this->table . " SET title= :title, level= :level, updated= :updated WHERE id= :id";
+            $query = "UPDATE " . $this->table . " SET title= :title, level= :level, updated= :updated, type = :type WHERE id= :id";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":title", $this->title);
             $stmt->bindParam(":level", $this->level);
             $updated = date('Y-m-d H:i:s');
             $stmt->bindParam(":updated", $updated);
+            $stmt->bindParam(":type", $this->type);
             $stmt->bindParam(":id", $this->id);
             if ($stmt->execute()) {
                 if ($stmt->rowCount()) {

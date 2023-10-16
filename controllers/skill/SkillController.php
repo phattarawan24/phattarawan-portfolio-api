@@ -102,9 +102,10 @@ class SkillController extends Controller
      * @OA\RequestBody(
      *  @OA\MediaType(
      *      mediaType="multipart/form-data",
-     *      @OA\Schema(required={"title", "level"},
+     *      @OA\Schema(required={"title", "level", "type"},
      *          @OA\Property(property="title", type="string"),
-     *          @OA\Property(property="level", type="string")
+     *          @OA\Property(property="level", type="string"),
+     *          @OA\Property(property="type", type="string")
      *      )
      *  )
      * ),
@@ -127,6 +128,7 @@ class SkillController extends Controller
                 $skillModel = new SkillModel($this->db);
                 $skillModel->title = $this->title;
                 $skillModel->level = $this->level;
+                $skillModel->type = $this->type;
                 $result = $skillModel->insert();
                 if ($result) {
                     $this->result = $result;
@@ -156,9 +158,10 @@ class SkillController extends Controller
      *  @OA\RequestBody(
      *   @OA\MediaType(
      *      mediaType="multipart/form-data",
-     *      @OA\Schema(required={"title", "level"},
+     *      @OA\Schema(required={"title", "level", "type"},
      *          @OA\Property(property="title", type="string"),
-     *          @OA\Property(property="level", type="string")
+     *          @OA\Property(property="level", type="string"),
+     *          @OA\Property(property="type", type="string")
      *      )
      *  )
      * ),
@@ -180,6 +183,7 @@ class SkillController extends Controller
                 $skillModel = new SkillModel($this->db);
                 $skillModel->title = $this->title;
                 $skillModel->level = $this->level;
+                $skillModel->type = $this->type;
                 $skillModel->id = $this->id;
                 $result = $skillModel->update();
                 if ($result) {

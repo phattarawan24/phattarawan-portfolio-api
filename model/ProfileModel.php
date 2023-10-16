@@ -15,7 +15,7 @@ class ProfileModel
     public function getAll()
     {
         try {
-            $query = "SELECT id, first_name, last_name, phone, email FROM " . $this->table . " ORDER BY id DESC";
+            $query = "SELECT * FROM " . $this->table . " ORDER BY id DESC";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt;
@@ -27,7 +27,7 @@ class ProfileModel
     public function getById()
     {
         try {
-            $query = "SELECT first_name, last_name FROM " . $this->table . " WHERE id= :id ORDER BY id DESC";
+            $query = "SELECT * FROM " . $this->table . " WHERE id= :id ORDER BY id DESC";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":id", $this->id);
             $stmt->execute();
@@ -40,7 +40,7 @@ class ProfileModel
     public function insert()
     {
         try {
-            $query = "INSERT INTO " . $this->table . "(first_name, last_name, phone, email, birthday, img) VALUES (:first_name, :last_name, :phone, :email, :birthday, :img)";
+            $query = "INSERT INTO " . $this->table . "(first_name, last_name, phone, email, birthday, img, degree, experience) VALUES (:first_name, :last_name, :phone, :email, :birthday, :img, :degree, :experience)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":first_name", $this->first_name);
             $stmt->bindParam(":last_name", $this->last_name);
@@ -48,6 +48,8 @@ class ProfileModel
             $stmt->bindParam(":email", $this->email);
             $stmt->bindParam(":birthday", $this->birthday);
             $stmt->bindParam(":img", $this->img);
+            $stmt->bindParam(":degree", $this->degree);
+            $stmt->bindParam(":experience", $this->experience);
             if ($stmt->execute()) {
                 $stmt_last_id = $this->conn->query("SELECT LAST_INSERT_ID()");
                 $lastId = $stmt_last_id->fetchColumn();
@@ -67,12 +69,15 @@ class ProfileModel
     public function update()
     {
         try {
-            $query = "UPDATE " . $this->table . " SET first_name= :first_name, last_name= :last_name, phone= :phone, email = :email WHERE id= :id";
+            $query = "UPDATE " . $this->table . " SET first_name= :first_name, last_name= :last_name, phone= :phone, email = :email, degree = :degree, experience = :experience, img = :img WHERE id= :id";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":first_name", $this->first_name);
             $stmt->bindParam(":last_name", $this->last_name);
             $stmt->bindParam(":phone", $this->phone);
             $stmt->bindParam(":email", $this->email);
+            $stmt->bindParam(":degree", $this->degree);
+            $stmt->bindParam(":experience", $this->experience);
+            $stmt->bindParam(":img", $this->img);
             $stmt->bindParam(":id", $this->id);
             if ($stmt->execute()) {
                 if ($stmt->rowCount()) {

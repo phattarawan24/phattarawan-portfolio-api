@@ -28,6 +28,7 @@ if ($stmt) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $r = $row;
             array_push($arr["response"], $r);
+            // print_r($r);
         }
         echo json_encode($arr);
     } else {
