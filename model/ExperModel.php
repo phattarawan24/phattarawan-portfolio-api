@@ -15,7 +15,7 @@ class ExperModel
     public function getAll()
     {
         try {
-            $query = "SELECT id, date, title, detail, type FROM " . $this->table . " ORDER BY id DESC";
+            $query = "SELECT * FROM " . $this->table . " ORDER BY id DESC";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt;
@@ -27,7 +27,7 @@ class ExperModel
     public function getById()
     {
         try {
-            $query = "SELECT date, title, detail FROM " . $this->table . " WHERE id= :id ORDER BY id DESC";
+            $query = "SELECT * FROM " . $this->table . " WHERE id= :id ORDER BY id DESC";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":id", $this->id);
             $stmt->execute();
@@ -42,11 +42,12 @@ class ExperModel
     public function insert()
     {
         try {
-            $query = "INSERT INTO " . $this->table . "(date, title, detail) VALUES (:date, :title, :detail)";
+            $query = "INSERT INTO " . $this->table . "(date, title, detail,type) VALUES (:date, :title, :detail, :type)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":date", $this->date);
             $stmt->bindParam(":title", $this->title);
             $stmt->bindParam(":detail", $this->detail);
+            $stmt->bindParam(":type", $this->type);
             if ($stmt->execute()) {
                 $stmt_last_id = $this->conn->query("SELECT LAST_INSERT_ID()");
                 $lastId = $stmt_last_id->fetchColumn();
@@ -66,11 +67,12 @@ class ExperModel
     public function update()
     {
         try {
-            $query = "UPDATE " . $this->table . " SET date= :date, title= :title, detail= :detail WHERE id= :id";
+            $query = "UPDATE " . $this->table . " SET date= :date, title= :title, detail= :detail, type= :type WHERE id= :id";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":date", $this->date);
             $stmt->bindParam(":title", $this->title);
             $stmt->bindParam(":detail", $this->detail);
+            $stmt->bindParam(":type", $this->type);
             $stmt->bindParam(":id", $this->id);
             if ($stmt->execute()) {
                 if ($stmt->rowCount()) {

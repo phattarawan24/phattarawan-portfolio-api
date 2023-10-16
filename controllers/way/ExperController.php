@@ -102,10 +102,11 @@ class ExperController extends Controller
      * @OA\RequestBody(
      *  @OA\MediaType(
      *      mediaType="multipart/form-data",
-     *      @OA\Schema(required={"date", "title", "detail"},
+     *      @OA\Schema(required={"date", "title", "detail", "type"},
      *          @OA\Property(property="date", type="string"),
      *          @OA\Property(property="title", type="string"),
-     *          @OA\Property(property="detail", type="string")
+     *          @OA\Property(property="detail", type="string"),
+     *          @OA\Property(property="type", type="string")
      *      )
      *  )
      * ),
@@ -129,6 +130,7 @@ class ExperController extends Controller
                 $experModel->date = $this->date;
                 $experModel->title = $this->title;
                 $experModel->detail = $this->detail;
+                $experModel->type = $this->type;
                 $result = $experModel->insert();
                 if ($result) {
                         $this->result = $result;
@@ -158,10 +160,11 @@ class ExperController extends Controller
      *  @OA\RequestBody(
      *   @OA\MediaType(
      *      mediaType="multipart/form-data",
-     *      @OA\Schema(required={"date", "title", "detail"},
+     *      @OA\Schema(required={"date", "title", "detail", "type"},
      *          @OA\Property(property="date", type="string"),
      *          @OA\Property(property="title", type="string"),
-     *          @OA\Property(property="detail", type="string")
+     *          @OA\Property(property="detail", type="string"),
+     *          @OA\Perporty(perporty="type", type="string")
      *      )
      *  )
      * ),
@@ -184,6 +187,7 @@ class ExperController extends Controller
                 $experModel->date = $this->date;
                 $experModel->title = $this->title;
                 $experModel->detail = $this->detail;
+                $experModel->type = $this->type;
                 $experModel->id = $this->id;
                 $result = $experModel->update();
                 if ($result) {
