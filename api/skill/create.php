@@ -14,12 +14,14 @@ $skillController = new SkillController();
 $params = array();
 $params["title"] = isset($_POST["title"]) && !empty($_POST["title"]) ? $_POST["title"] : "";
 $params["level"] = isset($_POST["level"]) && !empty($_POST["level"]) ? $_POST["level"] : "";
+$params["type"] = isset($_POST["type"]) ? $_POST["type"] : "";
 
 $data = json_encode($params);
 $data = json_decode($data);
 
 $skillController->title = $data->title;
 $skillController->level = $data->level;
+$skillController->type = $data->type;
 
 if ($data->title == "") {
     http_response_code(401);
@@ -41,7 +43,18 @@ if ($data->title == "") {
             "message" => "You didn't enter your level. Please try again."
         )
     );
-} else {
+} elseif ($data->type == "") {
+    http_response_code(401);
+    echo json_encode(
+        array(
+            "code" => 401,
+            "status" => "error",
+            "title" => "OOps...",
+            "message" => "You didn't enter your level. Please try again"
+        )
+    );
+}
+else {
     if ($rs = $skillController->createSkill()) {
         http_response_code(200);
         echo json_encode(
